@@ -26,4 +26,8 @@ pnpm preview     # serve o build
 - `index.html`: título da página, meta tags e favicon
 - `src/index.css`: cores da marca (`primary #283C2C`, `secondary #566A59`) e fontes
 - `src/components/`: uma seção por arquivo (Hero, Features, DashboardPreview, ...)
-- `public/`: logos e ícones
+- `public/`: logos, ícones e a foto da mão do hero
+
+## Créditos
+
+- Foto da mão segurando o celular: [Pexels](https://www.pexels.com/photo/hand-holding-iphone-mockup-8217475/), licença Pexels (uso comercial gratuito). Fundo e tela recortados para o mockup.

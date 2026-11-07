@@ -1,15 +1,44 @@
+import type { CSSProperties } from 'react'
 import Icon from './Icon.tsx'
-import PhoneFrame from './PhoneFrame.tsx'
 import SproutIcon from './SproutIcon.tsx'
 import WaitlistForm from './WaitlistForm.tsx'
-import { Dot, Glow, Sparkle } from './Decor.tsx'
+import { Glow } from './Decor.tsx'
+
+/*
+ * Foto: Pexels (licença gratuita para uso comercial), recortada com a tela transparente.
+ * A tela do app fica atrás da foto, posicionada no recorte da tela (valores em % da imagem).
+ */
+const SCREEN = { left: '13.3%', top: '4.1%', width: '39.5%', height: '59.2%' }
+const SCREEN_W = 252
+const SCREEN_H = 534
+
+const fadeMask: CSSProperties = {
+  maskImage: 'linear-gradient(to bottom, #000 70%, transparent 96%), linear-gradient(to right, #000 76%, transparent 99%)',
+  WebkitMaskImage:
+    'linear-gradient(to bottom, #000 70%, transparent 96%), linear-gradient(to right, #000 76%, transparent 99%)',
+  maskComposite: 'intersect',
+  WebkitMaskComposite: 'source-in',
+}
 
 function HomeScreen() {
   return (
     <div className="flex h-full flex-col bg-sage-50">
       {/* Topo escuro */}
-      <div className="bg-primary px-5 pt-12 pb-9 text-white">
-        <div className="flex items-center justify-between">
+      <div className="bg-primary px-5 pt-3 pb-9 text-white">
+        <div className="flex items-center justify-between px-2 text-[11px] font-semibold" aria-hidden="true">
+          <span>9:41</span>
+          <span className="flex items-center gap-1">
+            <span className="flex items-end gap-[2px]">
+              <span className="h-1.5 w-[3px] rounded-sm bg-current" />
+              <span className="h-2 w-[3px] rounded-sm bg-current" />
+              <span className="h-2.5 w-[3px] rounded-sm bg-current" />
+            </span>
+            <span className="ml-1 h-[10px] w-5 rounded-[3px] border border-current p-[1px]">
+              <span className="block h-full w-3/4 rounded-[1px] bg-current" />
+            </span>
+          </span>
+        </div>
+        <div className="mt-6 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <span className="grid h-9 w-9 place-items-center rounded-full bg-white/15 text-xs font-semibold">AN</span>
             <div>
@@ -91,18 +120,11 @@ function HomeScreen() {
 export default function Hero() {
   return (
     <section id="topo" className="relative overflow-hidden pt-32 pb-44 sm:pt-40 lg:pb-52">
-      <Glow className="top-0 right-[-10%] h-[620px] w-[720px] bg-[radial-gradient(closest-side,#cfe6d3,transparent)] opacity-90" />
-      <Glow className="top-[30%] right-[20%] h-[420px] w-[420px] bg-[radial-gradient(closest-side,#efe9cf,transparent)] opacity-70" />
-      <Glow className="top-[10%] -left-40 h-[400px] w-[500px] bg-[radial-gradient(closest-side,#e7efe4,transparent)]" />
+      <Glow className="top-0 right-[-8%] h-[640px] w-[760px] bg-[radial-gradient(closest-side,#d7eadb,transparent)]" />
 
       <div className="container-page relative grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3.5 py-1.5 text-xs font-medium text-muted ring-1 ring-sage-200 backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-            HackBrasil 2026 · Saúde &amp; Bem-estar
-          </span>
-
-          <h1 className="mt-6 text-[2.9rem] leading-[1.02] font-medium text-ink sm:text-6xl lg:text-[4.6rem]">
+          <h1 className="text-[2.9rem] leading-[1.02] font-medium text-ink sm:text-6xl lg:text-[4.6rem] xl:text-[5.4rem]">
             Cuide da sua mente <span className="text-gradient">antes do burnout</span>
           </h1>
 
@@ -124,38 +146,27 @@ export default function Hero() {
         </div>
 
         {/* Mockup */}
-        <div className="relative mx-auto flex justify-center text-primary lg:justify-end">
-          <Sparkle className="top-6 -left-4 h-4 w-4 sm:left-4" />
-          <Sparkle className="right-2 bottom-24 h-3 w-3" />
-          <Sparkle className="-top-6 right-10 h-2.5 w-2.5" />
-          <Dot className="top-24 right-0 h-1.5 w-1.5" />
-          <Dot className="bottom-10 left-6 h-2 w-2" />
-          <Dot className="top-1/2 -left-8 h-1 w-1" />
-
-          <div className="relative animate-float-slow">
-            <PhoneFrame darkTop className="rotate-[3deg]">
-              <HomeScreen />
-            </PhoneFrame>
-
-            <div className="card-shadow absolute top-[300px] -left-44 hidden animate-float items-center gap-3 rounded-2xl bg-white px-4 py-3 sm:flex">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-mint text-primary">
-                <Icon name="moon" className="h-4 w-4" />
-              </span>
-              <div>
-                <p className="text-[11px] text-muted">Sono esta semana</p>
-                <p className="text-sm font-semibold text-ink">+42 min por noite</p>
+        <div className="relative -mb-40 flex min-w-0 justify-center lg:-mb-72 lg:justify-end">
+          <div
+            className="relative w-[380px] shrink-0 translate-x-[16.9%] [--s:0.596] sm:w-[460px] sm:[--s:0.721] lg:w-[520px] lg:translate-x-0 lg:[--s:0.815] xl:w-[600px] xl:[--s:0.94]"
+            style={fadeMask}
+          >
+            <div className="absolute overflow-hidden bg-primary" style={SCREEN}>
+              <div
+                className="origin-top-left"
+                style={{ width: SCREEN_W, height: SCREEN_H, transform: 'scale(var(--s))' }}
+              >
+                <HomeScreen />
               </div>
             </div>
-
-            <div className="card-shadow absolute -right-36 top-24 hidden animate-float items-center gap-3 rounded-2xl bg-white px-4 py-3 [animation-delay:1.5s] sm:flex">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white">
-                <Icon name="check" className="h-4 w-4" />
-              </span>
-              <div>
-                <p className="text-[11px] text-muted">Pausas feitas</p>
-                <p className="text-sm font-semibold text-ink">5 dias seguidos</p>
-              </div>
-            </div>
+            <img
+              src="/hand-phone.webp"
+              alt="Mão segurando um celular com o app Burnless aberto"
+              width={1100}
+              height={1555}
+              draggable={false}
+              className="relative z-10 block h-auto w-full select-none"
+            />
           </div>
         </div>
       </div>
