@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #283c2c;
+  --color-primary-deep: #1c2b1f;
+  --color-secondary: #566a59;
+  --color-secondary-light: #8a9c8c;
+  --color-sage-50: #f5f8f4;
+  --color-sage-100: #eaf0e8;
+  --color-sage-200: #d5dfd3;
+  --color-ink: #1b251d;
+  --color-muted: #4d5c50;
+  --color-alert: #c98a2b;
+  --color-alert-soft: #fbf0dc;
+
+  --font-display: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-balance;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-secondary;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-secondary uppercase;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200;
+}
+
+@utility btn-light {
+  @apply btn bg-white text-primary hover:bg-sage-100;
+}
+
+@utility btn-ghost-light {
+  @apply btn text-white ring-1 ring-white/30 hover:bg-white/10;
+}
+
+@utility btn-primary {
+  @apply btn bg-primary text-white hover:bg-secondary;
+}
+
+@layer components {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
