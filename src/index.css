@@ -2,19 +2,44 @@
 
 @theme {
   --color-primary: #283c2c;
-  --color-primary-deep: #1c2b1f;
+  --color-primary-deep: #1a271d;
   --color-secondary: #566a59;
-  --color-secondary-light: #8a9c8c;
-  --color-sage-50: #f5f8f4;
-  --color-sage-100: #eaf0e8;
-  --color-sage-200: #d5dfd3;
-  --color-ink: #1b251d;
-  --color-muted: #4d5c50;
+  --color-secondary-light: #93a895;
+  --color-sage-50: #f6f8f5;
+  --color-sage-100: #edf2eb;
+  --color-sage-200: #d9e2d6;
+  --color-mint: #e3f0e5;
+  --color-mist: #e8edeb;
+  --color-ink: #161e18;
+  --color-muted: #5b675d;
   --color-alert: #c98a2b;
   --color-alert-soft: #fbf0dc;
 
   --font-display: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-progress: progress 5s linear forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite;
+
+  @keyframes progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
 }
 
 @layer base {
@@ -42,6 +67,12 @@
     html {
       scroll-behavior: auto;
     }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
 }
 
@@ -49,33 +80,49 @@
   @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
 }
 
-@utility eyebrow {
-  @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-secondary uppercase;
+@utility text-gradient {
+  background-image: linear-gradient(90deg, #566a59 0%, #9db09f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-light {
+  background-image: linear-gradient(90deg, #b8cbb9 0%, #6f8572 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 @utility btn {
   @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200;
 }
 
+@utility btn-primary {
+  @apply btn bg-primary text-white hover:bg-secondary;
+}
+
+@utility btn-outline {
+  @apply btn text-primary ring-[1.5px] ring-primary hover:bg-primary hover:text-white;
+}
+
 @utility btn-light {
   @apply btn bg-white text-primary hover:bg-sage-100;
 }
 
-@utility btn-ghost-light {
-  @apply btn text-white ring-1 ring-white/30 hover:bg-white/10;
-}
-
-@utility btn-primary {
-  @apply btn bg-primary text-white hover:bg-secondary;
+@utility card-shadow {
+  box-shadow:
+    0 1px 2px rgb(22 30 24 / 0.04),
+    0 18px 50px -18px rgb(40 60 44 / 0.18);
 }
 
 @layer components {
   .reveal {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(22px);
     transition:
-      opacity 0.7s ease,
-      transform 0.7s ease;
+      opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
   .reveal.is-visible {

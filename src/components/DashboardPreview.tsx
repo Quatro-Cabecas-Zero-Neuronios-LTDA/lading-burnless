@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Icon, { type IconName } from './Icon.tsx'
 import Reveal from './Reveal.tsx'
+import SectionHeading from './SectionHeading.tsx'
+import { Glow } from './Decor.tsx'
 
 const days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
 
@@ -75,11 +77,25 @@ const tabs: Record<'sono' | 'estresse' | 'habitos', LineTab | BarTab> = {
 
 type TabKey = keyof typeof tabs
 
-const W = 600
-const H = 230
 const PAD = { top: 20, right: 16, bottom: 34, left: 16 }
 
+/** Em telas estreitas o gráfico usa um viewBox menor, para os rótulos não ficarem minúsculos. */
+function useNarrow() {
+  const query = '(max-width: 640px)'
+  const [narrow, setNarrow] = useState(() => typeof window !== 'undefined' && window.matchMedia(query).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(query)
+    const onChange = () => setNarrow(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return narrow
+}
+
 function LineChart({ tab }: { tab: LineTab }) {
+  const narrow = useNarrow()
+  const W = narrow ? 340 : 600
+  const H = narrow ? 220 : 230
   const innerW = W - PAD.left - PAD.right
   const innerH = H - PAD.top - PAD.bottom
   const x = (i: number) => PAD.left + (i / (tab.values.length - 1)) * innerW
@@ -183,18 +199,14 @@ export default function DashboardPreview() {
   const tab = tabs[active]
 
   return (
-    <section id="dashboard" className="bg-white py-20 sm:py-28">
-      <div className="container-page">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow">Dashboard interativo</span>
-          <h2 className="mt-4 text-3xl font-semibold text-primary sm:text-4xl">Veja sua evolução, dia após dia.</h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted">
-            Todo registro vira histórico. Acompanhe sono, estresse e hábitos em gráficos claros e entenda o que está
-            funcionando. Experimente as abas abaixo.
-          </p>
-        </Reveal>
+    <section id="dashboard" className="relative overflow-hidden bg-sage-50 py-24 sm:py-32">
+      <Glow className="top-1/3 -right-40 h-[500px] w-[600px] bg-[radial-gradient(closest-side,#d3e6d6,transparent)]" />
+      <div className="container-page relative">
+        <SectionHeading eyebrow="Dashboard interativo" title="Veja sua evolução," accent="dia após dia">
+          Todo registro vira histórico. Acompanhe sono, estresse e hábitos em gráficos claros. Experimente as abas abaixo.
+        </SectionHeading>
 
-        <Reveal className="mt-14 overflow-hidden rounded-[2rem] bg-primary p-2 shadow-2xl shadow-primary/25 sm:p-3">
+        <Reveal className="mt-16 overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary to-secondary p-2 shadow-[0_40px_80px_-30px_rgba(40,60,44,0.5)] sm:p-3">
           <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_300px]">
             {/* Painel principal */}
             <div className="rounded-3xl bg-white p-5 sm:p-7">

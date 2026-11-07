@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Icon from './Icon.tsx'
 import Reveal from './Reveal.tsx'
+import SectionHeading from './SectionHeading.tsx'
 
 const faqs = [
   {
@@ -29,18 +30,29 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="bg-sage-50 py-20 sm:py-28">
-      <div className="container-page max-w-3xl">
-        <Reveal className="text-center">
-          <span className="eyebrow">Perguntas frequentes</span>
-          <h2 className="mt-4 text-3xl font-semibold text-primary sm:text-4xl">Ficou alguma dúvida?</h2>
-        </Reveal>
+    <section id="faq" className="bg-sage-50 py-24 sm:py-32">
+      <div className="container-page grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHeading align="left" eyebrow="FAQ" title="Perguntas" accent="frequentes">
+            Tudo o que você precisa saber antes de começar.
+          </SectionHeading>
+          <Reveal className="mt-8 flex gap-3 rounded-2xl bg-white p-5 ring-1 ring-sage-200">
+            <Icon name="heart" className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+            <p className="text-sm leading-relaxed text-muted">
+              Precisa conversar agora? Ligue <strong className="text-ink">188</strong> (CVV). É gratuito e funciona 24h.
+            </p>
+          </Reveal>
+        </div>
 
-        <div className="mt-12 space-y-3">
+        <div className="space-y-3">
           {faqs.map((f, i) => {
             const isOpen = open === i
             return (
-              <Reveal key={f.q} delay={i * 60} className="rounded-2xl bg-white ring-1 ring-sage-200">
+              <Reveal
+                key={f.q}
+                delay={i * 60}
+                className={`rounded-3xl bg-white transition ${isOpen ? 'card-shadow ring-1 ring-sage-200' : 'ring-1 ring-sage-200/60'}`}
+              >
                 <h3>
                   <button
                     type="button"
@@ -48,15 +60,16 @@ export default function FAQ() {
                     aria-expanded={isOpen}
                     aria-controls={`faq-a-${i}`}
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-display text-lg font-semibold text-primary"
+                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-display text-lg font-medium text-ink"
                   >
                     {f.q}
-                    <Icon
-                      name="chevron"
-                      className={`h-5 w-5 shrink-0 text-secondary transition-transform duration-300 ${
-                        isOpen ? 'rotate-180' : ''
+                    <span
+                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition ${
+                        isOpen ? 'bg-primary text-white' : 'bg-sage-100 text-primary'
                       }`}
-                    />
+                    >
+                      <Icon name="plus" className={`h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`} />
+                    </span>
                   </button>
                 </h3>
                 <div

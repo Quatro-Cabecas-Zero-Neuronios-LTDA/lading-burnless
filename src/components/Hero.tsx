@@ -1,66 +1,88 @@
 import Icon from './Icon.tsx'
+import PhoneFrame from './PhoneFrame.tsx'
 import SproutIcon from './SproutIcon.tsx'
+import WaitlistForm from './WaitlistForm.tsx'
+import { Dot, Glow, Sparkle } from './Decor.tsx'
 
-const week = [
-  { d: 'S', v: 38 },
-  { d: 'T', v: 46 },
-  { d: 'Q', v: 52 },
-  { d: 'Q', v: 64 },
-  { d: 'S', v: 71 },
-  { d: 'S', v: 58 },
-  { d: 'D', v: 44 },
-]
-
-function HeroMock() {
+function HomeScreen() {
   return (
-    <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-      {/* Cartão principal: nível de sobrecarga */}
-      <div className="rounded-3xl bg-white p-6 text-ink shadow-2xl shadow-black/30">
+    <div className="flex h-full flex-col bg-sage-50">
+      {/* Topo escuro */}
+      <div className="bg-primary px-5 pt-12 pb-9 text-white">
         <div className="flex items-center justify-between">
-          <div>
-            <p className="text-xs font-medium text-muted">Seu nível de sobrecarga</p>
-            <p className="mt-1 font-display text-3xl font-semibold text-primary">
-              Moderado <span className="text-base font-medium text-alert">↑ 12%</span>
-            </p>
+          <div className="flex items-center gap-2.5">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-white/15 text-xs font-semibold">AN</span>
+            <div>
+              <p className="text-[13px] font-semibold">Olá, Ana</p>
+              <p className="text-[10px] text-white/60">Como você está hoje?</p>
+            </div>
           </div>
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-sage-100 text-primary">
-            <Icon name="activity" />
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-white/10">
+            <Icon name="bell" className="h-4 w-4" />
           </span>
         </div>
 
-        <div className="mt-6 flex h-32 items-end justify-between gap-2" aria-hidden="true">
-          {week.map((w, i) => (
-            <div key={i} className="flex flex-1 flex-col items-center gap-2">
-              <div
-                className={`w-full rounded-lg ${w.v > 60 ? 'bg-alert' : 'bg-secondary'}`}
-                style={{ height: `${w.v * 1.5}px` }}
-              />
-              <span className="text-[11px] font-medium text-muted">{w.d}</span>
-            </div>
+        <p className="mt-6 text-center text-[10px] tracking-wide text-white/60 uppercase">Nível de sobrecarga</p>
+        <p className="mt-1 text-center font-display text-[30px] leading-none font-semibold">Moderado</p>
+        <div className="mx-auto mt-4 flex w-44 gap-1" aria-hidden="true">
+          {Array.from({ length: 10 }, (_, i) => (
+            <span
+              key={i}
+              className={`h-1.5 flex-1 rounded-full ${i < 4 ? 'bg-secondary-light' : i < 6 ? 'bg-alert' : 'bg-white/15'}`}
+            />
           ))}
         </div>
+        <p className="mt-3 text-center text-[10px] text-white/60">↓ 12% em relação à semana passada</p>
+      </div>
 
-        <div className="mt-5 flex items-start gap-3 rounded-2xl bg-alert-soft p-4">
-          <Icon name="alert" className="mt-0.5 h-5 w-5 shrink-0 text-alert" />
-          <p className="text-sm leading-relaxed text-ink">
-            <strong className="font-semibold">Quinta e sexta passaram do limite.</strong> Você dormiu menos de 6h e
-            estudou mais de 9h nesses dias.
+      {/* Conteúdo */}
+      <div className="-mt-5 flex-1 space-y-2.5 rounded-t-[1.6rem] bg-sage-50 px-4 pt-4">
+        <div className="grid grid-cols-2 gap-2.5">
+          <div className="rounded-2xl bg-white p-3 shadow-sm">
+            <div className="flex items-center gap-1.5 text-[10px] text-muted">
+              <Icon name="moon" className="h-3 w-3" /> Sono
+            </div>
+            <p className="mt-1 font-display text-lg font-semibold text-primary">6h37</p>
+            <p className="text-[9px] text-muted">Meta: 7h</p>
+          </div>
+          <div className="rounded-2xl bg-white p-3 shadow-sm">
+            <div className="flex items-center gap-1.5 text-[10px] text-muted">
+              <Icon name="activity" className="h-3 w-3" /> Estresse
+            </div>
+            <p className="mt-1 font-display text-lg font-semibold text-primary">5/10</p>
+            <p className="text-[9px] text-muted">Estável</p>
+          </div>
+        </div>
+
+        <div className="rounded-2xl bg-white p-3 shadow-sm">
+          <div className="flex items-center gap-2">
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-white">
+              <SproutIcon className="h-3 w-auto" />
+            </span>
+            <p className="text-[11px] font-semibold text-primary">Conselheiro</p>
+          </div>
+          <p className="mt-2 text-[10.5px] leading-snug text-muted">
+            Que tal estudar em blocos de 50 min com 10 min de pausa hoje?
           </p>
+        </div>
+
+        <div className="rounded-2xl bg-white p-3 shadow-sm">
+          <div className="flex items-center justify-between text-[11px]">
+            <p className="font-semibold text-primary">Check-in de hoje</p>
+            <p className="text-muted">3 de 4</p>
+          </div>
+          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sage-100">
+            <div className="h-full w-3/4 rounded-full bg-secondary" />
+          </div>
         </div>
       </div>
 
-      {/* Bolha do conselheiro */}
-      <div className="relative -mt-6 ml-6 rounded-3xl bg-sage-100 p-5 text-ink shadow-xl shadow-black/20 sm:ml-16 lg:-mr-6">
-        <div className="flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-white">
-            <SproutIcon className="h-4 w-auto" />
-          </span>
-          <p className="text-sm font-semibold text-primary">Conselheiro Burnless</p>
-        </div>
-        <p className="mt-3 text-sm leading-relaxed text-muted">
-          Que tal blocos de 50 min com 10 min de pausa amanhã? E deixar o celular fora do quarto depois das 23h. Isso
-          deve ajudar no seu sono.
-        </p>
+      {/* Barra de navegação */}
+      <div className="flex items-center justify-around border-t border-sage-200 bg-white px-6 pt-3 pb-6 text-muted">
+        <Icon name="home" className="h-5 w-5 text-primary" />
+        <Icon name="chart" className="h-5 w-5" />
+        <Icon name="pencil" className="h-5 w-5" />
+        <Icon name="user" className="h-5 w-5" />
       </div>
     </div>
   )
@@ -68,52 +90,74 @@ function HeroMock() {
 
 export default function Hero() {
   return (
-    <section id="topo" className="relative overflow-hidden bg-primary pt-28 pb-20 text-white sm:pt-36 lg:pb-28">
-      {/* Brilho de fundo */}
-      <div
-        className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-secondary/40 blur-3xl"
-        aria-hidden="true"
-      />
-      <SproutIcon className="pointer-events-none absolute -bottom-24 -left-16 h-96 w-auto text-white/[0.04]" />
+    <section id="topo" className="relative overflow-hidden pt-32 pb-44 sm:pt-40 lg:pb-52">
+      <Glow className="top-0 right-[-10%] h-[620px] w-[720px] bg-[radial-gradient(closest-side,#cfe6d3,transparent)] opacity-90" />
+      <Glow className="top-[30%] right-[20%] h-[420px] w-[420px] bg-[radial-gradient(closest-side,#efe9cf,transparent)] opacity-70" />
+      <Glow className="top-[10%] -left-40 h-[400px] w-[500px] bg-[radial-gradient(closest-side,#e7efe4,transparent)]" />
 
-      <div className="container-page relative grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+      <div className="container-page relative grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium text-white/90 ring-1 ring-white/15">
-            <span className="h-1.5 w-1.5 rounded-full bg-secondary-light" />
-            HackBrasil 2026 · Trilha Saúde &amp; Bem-estar
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3.5 py-1.5 text-xs font-medium text-muted ring-1 ring-sage-200 backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+            HackBrasil 2026 · Saúde &amp; Bem-estar
           </span>
 
-          <h1 className="mt-6 text-4xl leading-[1.05] font-semibold sm:text-5xl lg:text-6xl">
-            Cuide da sua mente antes que o burnout chegue.
+          <h1 className="mt-6 text-[2.9rem] leading-[1.02] font-medium text-ink sm:text-6xl lg:text-[4.6rem]">
+            Cuide da sua mente <span className="text-gradient">antes do burnout</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-            O <strong className="font-semibold text-white">Burnless</strong> acompanha seu sono, seus hábitos e sua rotina
-            de estudos. A IA percebe quando você está entrando em sobrecarga e sugere o que mudar, antes que vire um
-            problema.
+          <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
+            O Burnless acompanha seu sono, seus hábitos e sua rotina de estudos. A IA avisa quando você está entrando em
+            sobrecarga e mostra o que mudar.
           </p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href="#comecar" className="btn-light">
-              Quero testar o Burnless
-              <Icon name="arrow" className="h-4 w-4" />
-            </a>
-            <a href="#funcionalidades" className="btn-ghost-light">
-              Ver funcionalidades
-            </a>
-          </div>
+          <WaitlistForm className="mt-9" />
 
-          <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/70">
-            {['Feito para estudantes', 'Sugestões personalizadas', 'Não substitui um profissional'].map((t) => (
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
+            {['Feito para estudantes', 'Check-in em 1 minuto', 'Não substitui um profissional'].map((t) => (
               <li key={t} className="flex items-center gap-2">
-                <Icon name="check" className="h-4 w-4 text-secondary-light" />
+                <Icon name="check" className="h-4 w-4 text-secondary" />
                 {t}
               </li>
             ))}
           </ul>
         </div>
 
-        <HeroMock />
+        {/* Mockup */}
+        <div className="relative mx-auto flex justify-center text-primary lg:justify-end">
+          <Sparkle className="top-6 -left-4 h-4 w-4 sm:left-4" />
+          <Sparkle className="right-2 bottom-24 h-3 w-3" />
+          <Sparkle className="-top-6 right-10 h-2.5 w-2.5" />
+          <Dot className="top-24 right-0 h-1.5 w-1.5" />
+          <Dot className="bottom-10 left-6 h-2 w-2" />
+          <Dot className="top-1/2 -left-8 h-1 w-1" />
+
+          <div className="relative animate-float-slow">
+            <PhoneFrame darkTop className="rotate-[3deg]">
+              <HomeScreen />
+            </PhoneFrame>
+
+            <div className="card-shadow absolute top-[300px] -left-44 hidden animate-float items-center gap-3 rounded-2xl bg-white px-4 py-3 sm:flex">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-mint text-primary">
+                <Icon name="moon" className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-[11px] text-muted">Sono esta semana</p>
+                <p className="text-sm font-semibold text-ink">+42 min por noite</p>
+              </div>
+            </div>
+
+            <div className="card-shadow absolute -right-36 top-24 hidden animate-float items-center gap-3 rounded-2xl bg-white px-4 py-3 [animation-delay:1.5s] sm:flex">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white">
+                <Icon name="check" className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-[11px] text-muted">Pausas feitas</p>
+                <p className="text-sm font-semibold text-ink">5 dias seguidos</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

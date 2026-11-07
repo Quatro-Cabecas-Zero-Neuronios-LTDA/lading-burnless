@@ -7,7 +7,7 @@ const links = [
   { href: '#dashboard', label: 'Dashboard' },
   { href: '#como-funciona', label: 'Como funciona' },
   { href: '#para-quem', label: 'Para quem' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '#seguranca', label: 'Segurança' },
 ]
 
 export default function Navbar() {
@@ -23,32 +23,32 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled || open ? 'bg-primary/95 shadow-lg shadow-black/10 backdrop-blur' : 'bg-transparent'
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled || open ? 'border-b border-sage-200/70 bg-white/80 backdrop-blur-xl' : 'border-b border-transparent'
       }`}
     >
-      <nav className="container-page flex h-16 items-center justify-between" aria-label="Principal">
+      <nav className="container-page flex h-[72px] items-center justify-between" aria-label="Principal">
         <a href="#topo" aria-label="Burnless — início">
-          <Logo />
+          <Logo light={false} />
         </a>
 
-        <ul className="hidden items-center gap-8 lg:flex">
+        <ul className="hidden items-center gap-9 lg:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="text-sm font-medium text-white/80 transition hover:text-white">
+              <a href={l.href} className="text-sm font-medium text-ink/70 transition hover:text-ink">
                 {l.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <a href="#comecar" className="btn-light hidden py-2.5 lg:inline-flex">
-          Quero testar
+        <a href="#comecar" className="btn-outline hidden py-2.5 lg:inline-flex">
+          Quero testar grátis
         </a>
 
         <button
           type="button"
-          className="rounded-lg p-2 text-white lg:hidden"
+          className="rounded-lg p-2 text-ink lg:hidden"
           aria-expanded={open}
           aria-controls="menu-mobile"
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
@@ -59,22 +59,22 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div id="menu-mobile" className="border-t border-white/10 lg:hidden">
+        <div id="menu-mobile" className="border-t border-sage-200 bg-white lg:hidden">
           <ul className="container-page flex flex-col gap-1 py-4">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-3 font-medium text-white/90 hover:bg-white/10"
+                  className="block rounded-xl px-3 py-3 font-medium text-ink hover:bg-sage-50"
                 >
                   {l.label}
                 </a>
               </li>
             ))}
             <li className="pt-2">
-              <a href="#comecar" onClick={() => setOpen(false)} className="btn-light w-full">
-                Quero testar
+              <a href="#comecar" onClick={() => setOpen(false)} className="btn-primary w-full">
+                Quero testar grátis
               </a>
             </li>
           </ul>

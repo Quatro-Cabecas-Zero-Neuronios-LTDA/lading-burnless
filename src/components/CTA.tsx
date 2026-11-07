@@ -1,56 +1,39 @@
-import { useState, type FormEvent } from 'react'
-import Icon from './Icon.tsx'
-import SproutIcon from './SproutIcon.tsx'
 import Reveal from './Reveal.tsx'
+import SproutIcon from './SproutIcon.tsx'
+import WaitlistForm from './WaitlistForm.tsx'
+import { Dot, Glow, Sparkle } from './Decor.tsx'
 
 export default function CTA() {
-  const [sent, setSent] = useState(false)
-
-  // TODO: conectar a um serviço de lista de espera (Formspree, Google Forms, Supabase...).
-  // Por enquanto o formulário só mostra a confirmação na tela e não envia nada.
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setSent(true)
-  }
-
   return (
-    <section id="comecar" className="bg-white py-20 sm:py-28">
+    <section id="comecar" className="py-24 sm:py-32">
       <div className="container-page">
-        <Reveal className="relative overflow-hidden rounded-[2.5rem] bg-primary px-6 py-16 text-center text-white sm:px-12 sm:py-20">
-          <SproutIcon className="pointer-events-none absolute -top-10 -right-10 h-72 w-auto text-white/[0.05]" />
-          <div
-            className="pointer-events-none absolute -bottom-32 left-1/2 h-80 w-[600px] -translate-x-1/2 rounded-full bg-secondary/50 blur-3xl"
+        <Reveal className="relative overflow-hidden rounded-[2.5rem] bg-primary px-6 pt-16 pb-36 text-center sm:px-12 sm:pt-20 sm:pb-44">
+          <Glow className="-top-32 left-1/2 h-[400px] w-[700px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(147,168,149,0.45),transparent)]" />
+          <Sparkle className="top-14 left-[12%] h-4 w-4 text-white/60" />
+          <Sparkle className="top-28 right-[14%] h-3 w-3 text-white/50" />
+          <Dot className="top-40 left-[22%] h-1.5 w-1.5 text-white/40" />
+          <Dot className="top-16 right-[26%] h-1 w-1 text-white/50" />
+
+          <span
+            className="pointer-events-none absolute inset-x-0 -bottom-6 font-display text-[5.5rem] leading-none font-semibold tracking-tighter text-white/[0.07] select-none sm:-bottom-10 sm:text-[11rem] lg:text-[13rem]"
             aria-hidden="true"
-          />
+          >
+            burnless
+          </span>
 
           <div className="relative mx-auto max-w-2xl">
-            <h2 className="text-3xl font-semibold sm:text-5xl">Comece a cuidar de você hoje.</h2>
-            <p className="mt-5 text-lg leading-relaxed text-white/75">
+            <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-white/10 text-white ring-1 ring-white/15">
+              <SproutIcon className="h-7 w-auto" />
+            </span>
+            <h2 className="mt-6 text-4xl leading-[1.05] font-medium text-white sm:text-6xl">
+              Comece a cuidar <span className="text-gradient-light">de você hoje</span>
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-white/70">
               Entre na lista de espera e seja um dos primeiros a testar o Burnless.
             </p>
-
-            {sent ? (
-              <p className="mx-auto mt-10 inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 font-medium ring-1 ring-white/20">
-                <Icon name="check" className="h-5 w-5 text-secondary-light" />
-                Pronto! Avisaremos você assim que o Burnless estiver disponível.
-              </p>
-            ) : (
-              <form onSubmit={onSubmit} className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row">
-                <label htmlFor="email" className="sr-only">
-                  Seu e-mail
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  placeholder="seu@email.com"
-                  className="min-w-0 flex-1 rounded-full bg-white px-5 py-3 text-ink placeholder:text-muted/70 focus:outline-2 focus:outline-offset-2 focus:outline-secondary-light"
-                />
-                <button type="submit" className="btn bg-secondary text-white hover:bg-secondary-light">
-                  Quero testar
-                </button>
-              </form>
-            )}
+            <div className="mt-10 flex justify-center">
+              <WaitlistForm dark />
+            </div>
           </div>
         </Reveal>
       </div>
