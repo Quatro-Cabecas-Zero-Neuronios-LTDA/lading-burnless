@@ -6,17 +6,19 @@ Stack: React + Vite + TypeScript + Tailwind CSS v4.
 
 ## Rodar localmente
 
+Requer [pnpm](https://pnpm.io) (`npm install -g pnpm`).
+
 ```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # gera dist/
-npm run preview  # serve o build
+pnpm install
+pnpm dev         # http://localhost:5173
+pnpm build       # gera dist/
+pnpm preview     # serve o build
 ```
 
 ## Deploy (Vercel, HTTPS automático)
 
 1. Em [vercel.com/new](https://vercel.com/new), importe este repositório.
-2. A Vercel detecta Vite sozinha: build `npm run build`, saída `dist`.
+2. A Vercel detecta Vite e pnpm sozinha (pelo `pnpm-lock.yaml`): build `pnpm build`, saída `dist`.
 3. A página fica em `https://<projeto>.vercel.app`, já com HTTPS.
 
 ## Estrutura
