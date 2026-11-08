@@ -118,13 +118,15 @@ function HomeScreen() {
 
 // Faixa de luz rente à seção de baixo: elipse larga e baixa, como uma linha no horizonte.
 const horizon: CSSProperties = {
-  background: 'radial-gradient(50% 50% at 50% 50%, rgb(156 204 168 / 0.9), transparent)',
+  background: 'radial-gradient(50% 50% at 50% 50%, rgb(142 197 156), transparent)',
 }
 
 export default function Hero() {
   return (
     <section id="topo" className="relative overflow-hidden pt-32 pb-44 sm:pt-40 lg:pb-52">
       <div aria-hidden="true" className="pointer-events-none absolute bottom-16 left-1/2 h-40 w-[90%] max-w-[1400px] -translate-x-1/2 blur-3xl" style={horizon} />
+      {/* Coluna de luz subindo do horizonte, no vão entre o texto e o celular (só no desktop, onde ficam lado a lado) */}
+      <div aria-hidden="true" className="pointer-events-none absolute top-24 bottom-16 left-[58%] hidden w-40 -translate-x-1/2 blur-3xl lg:block" style={horizon} />
 
       <div className="container-page relative grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
