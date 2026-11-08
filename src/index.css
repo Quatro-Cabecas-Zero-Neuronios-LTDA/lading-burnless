@@ -77,7 +77,7 @@
 }
 
 @utility container-page {
-  @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-10;
+  @apply mx-auto w-full max-w-[1840px] px-4 sm:px-6 lg:px-8 xl:px-10;
 }
 
 @utility text-gradient {

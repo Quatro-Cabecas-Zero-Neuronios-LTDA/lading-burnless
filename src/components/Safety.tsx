@@ -60,7 +60,7 @@ const cols: Col[] = [
 export default function Safety() {
   return (
     <section id="seguranca" className="relative overflow-hidden bg-primary-deep py-24 sm:py-32">
-      <Glow className="-top-40 left-1/2 h-[420px] w-[800px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(147,168,149,0.28),transparent)]" />
+      <Glow className="-top-40 -right-40 h-[480px] w-[800px] bg-[radial-gradient(closest-side,rgba(147,168,149,0.28),transparent)]" />
 
       <div className="container-page relative">
         <SectionHeading dark eyebrow="Segurança" title="Orientação responsável" accent="do começo ao fim">

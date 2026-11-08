@@ -14,14 +14,7 @@ export default function CTA() {
           <Dot className="top-40 left-[22%] h-1.5 w-1.5 text-white/40" />
           <Dot className="top-16 right-[26%] h-1 w-1 text-white/50" />
 
-          <span
-            className="pointer-events-none absolute inset-x-0 -bottom-6 font-display text-[5.5rem] leading-none font-semibold tracking-tighter text-white/[0.07] select-none sm:-bottom-10 sm:text-[11rem] lg:text-[13rem]"
-            aria-hidden="true"
-          >
-            burnless
-          </span>
-
-          <div className="relative mx-auto max-w-2xl">
+          <div className="relative mx-auto max-w-4xl">
             <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-white/10 text-white ring-1 ring-white/15">
               <SproutIcon className="h-7 w-auto" />
             </span>

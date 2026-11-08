@@ -4,7 +4,6 @@ import Highlights from './components/Highlights.tsx'
 import Bento from './components/Bento.tsx'
 import DashboardPreview from './components/DashboardPreview.tsx'
 import HowItWorks from './components/HowItWorks.tsx'
-import Stories from './components/Stories.tsx'
 import Safety from './components/Safety.tsx'
 import Science from './components/Science.tsx'
 import FAQ from './components/FAQ.tsx'
@@ -21,7 +20,6 @@ export default function App() {
         <Bento />
         <DashboardPreview />
         <HowItWorks />
-        <Stories />
         <Safety />
         <Science />
         <FAQ />

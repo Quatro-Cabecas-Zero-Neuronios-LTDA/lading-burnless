@@ -184,7 +184,7 @@ export default function HowItWorks() {
 
   return (
     <section id="como-funciona" className="relative overflow-hidden bg-gradient-to-b from-white via-sage-50 to-white py-24 sm:py-32">
-      <Glow className="top-0 left-1/2 h-[380px] w-[680px] -translate-x-1/2 bg-[radial-gradient(closest-side,#d6e8d9,transparent)]" />
+      <Glow className="top-0 -left-40 h-[420px] w-[680px] bg-[radial-gradient(closest-side,#d6e8d9,transparent)]" />
 
       <div className="container-page relative">
         <SectionHeading eyebrow="Como funciona" title="Simples de usar," accent="feito para durar" />

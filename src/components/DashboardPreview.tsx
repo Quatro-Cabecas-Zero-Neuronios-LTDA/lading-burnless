@@ -279,7 +279,7 @@ export default function DashboardPreview() {
             </div>
           </div>
         </Reveal>
-        <p className="mt-4 text-center text-xs text-muted">Dados ilustrativos.</p>
+        <p className="mt-4 text-right text-xs text-muted">Dados ilustrativos.</p>
       </div>
     </section>
   )

@@ -6,7 +6,6 @@ const links = [
   { href: '#funcionalidades', label: 'Funcionalidades' },
   { href: '#dashboard', label: 'Dashboard' },
   { href: '#como-funciona', label: 'Como funciona' },
-  { href: '#para-quem', label: 'Para quem' },
   { href: '#seguranca', label: 'Segurança' },
 ]
 

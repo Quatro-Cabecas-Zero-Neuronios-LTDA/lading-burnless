@@ -2,7 +2,6 @@ import type { CSSProperties } from 'react'
 import Icon from './Icon.tsx'
 import SproutIcon from './SproutIcon.tsx'
 import WaitlistForm from './WaitlistForm.tsx'
-import { Glow } from './Decor.tsx'
 
 /*
  * Foto: Pexels (licença gratuita para uso comercial), recortada com a tela transparente.
@@ -117,10 +116,15 @@ function HomeScreen() {
   )
 }
 
+// Faixa de luz rente à seção de baixo: elipse larga e baixa, como uma linha no horizonte.
+const horizon: CSSProperties = {
+  background: 'radial-gradient(50% 50% at 50% 50%, rgb(156 204 168 / 0.9), transparent)',
+}
+
 export default function Hero() {
   return (
     <section id="topo" className="relative overflow-hidden pt-32 pb-44 sm:pt-40 lg:pb-52">
-      <Glow className="top-0 right-[-8%] h-[640px] w-[760px] bg-[radial-gradient(closest-side,#d7eadb,transparent)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-16 left-1/2 h-40 w-[90%] max-w-[1400px] -translate-x-1/2 blur-3xl" style={horizon} />
 
       <div className="container-page relative grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
         <div>

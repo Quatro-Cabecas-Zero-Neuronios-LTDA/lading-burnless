@@ -22,8 +22,13 @@ const items: { icon: IconName; title: string; text: string }[] = [
 export default function Highlights() {
   return (
     <section className="relative z-10 -mt-28 pb-8">
+      {/* soft color behind the card so the frosted glass has something to blur */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-1/3 left-[8%] h-72 w-72 rounded-full bg-secondary-light/40 blur-3xl" />
+        <div className="absolute right-[10%] bottom-0 h-80 w-80 rounded-full bg-sage-200/70 blur-3xl" />
+      </div>
       <div className="container-page">
-        <Reveal className="card-shadow rounded-[2rem] bg-white p-8 ring-1 ring-sage-200/70 sm:p-12">
+        <Reveal className="card-shadow rounded-[2rem] border border-white/70 bg-white/45 p-8 ring-1 ring-sage-200/40 backdrop-blur-2xl backdrop-saturate-150 sm:p-12">
           <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
             <div>
               <span className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.18em] text-muted uppercase">
@@ -43,7 +48,7 @@ export default function Highlights() {
           <div className="mt-12 grid gap-10 sm:grid-cols-3">
             {items.map((it, i) => (
               <Reveal key={it.title} delay={i * 100}>
-                <span className="grid h-12 w-12 place-items-center rounded-2xl text-primary ring-[1.5px] ring-primary/80">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/50 text-primary ring-[1.5px] ring-primary/80 backdrop-blur-md">
                   <Icon name={it.icon} className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 text-lg font-semibold text-ink">{it.title}</h3>
